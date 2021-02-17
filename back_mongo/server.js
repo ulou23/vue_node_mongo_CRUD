@@ -1,18 +1,34 @@
 const express=require("express");
 const bodyparser=require("body-parser");
 const cors=require("cors");
+const mongoose=require('mongoose');
 
 const app=express();
+
+url="mongodb://localhost:27017/lampybaza";
+
+
+
+const conn=mongoose.createConnection(url,{ useNewUrlParser:true, useUnifiedTopology:true}).then(()=> {
+    console.log("DB connected")
+}, error=>{
+    console.log("DB couldnt be connected"+ error)
+})
+
+const catAPI=require('../back_mongo/routes/cat.route')
 
 var cors_org={
     origin: "http://localhost:8081"
 };
 
-app.use(cors(cors_org));
+app.use(cors());
 app.use(bodyparser.json());
 
-app.use(bodyparser.urlencoded({extended:true}));
+app.use(bodyparser.urlencoded({extended:false}));  //false or true
 
+app.use('/api',catAPI)
+
+/*
 const db=require("./models");
 db.mongoose.connect(db.url,{ useNewUrlParser:true, useUnifiedTopology:true}).then(()=>{ console.log("connected to the MongoDB lampy");}).catch(err=>{ console.log("Cannot connect",err);
 process.exit()});
@@ -21,9 +37,10 @@ app.get("/",(req,res)=> {
     res.json({message: "waiting"});
 });
 
-
+*/
 
 const PORT=process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+

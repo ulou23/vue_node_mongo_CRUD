@@ -16,3 +16,5 @@ const Category=
 
 
 module.exports=Category;
+
+module.exports=mongoose.model('CatModel', Category)

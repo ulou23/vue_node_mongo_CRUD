@@ -6,6 +6,8 @@ const Category = require("./Category");
 
 const conn=mongoose.createConnection(url,{ useNewUrlParser:true, useUnifiedTopology:true});
 
+
+// create TEST 
 const Cat=conn.model('Category', Category);
 const newcat=new Cat({  name: 'italian',
         slug:'it',
@@ -19,3 +21,6 @@ const newcat=new Cat({  name: 'italian',
             if (err) return handleError(err);
             console.log(`%s,%s`, catt.name,catt.slug)
         })
+
+
+        

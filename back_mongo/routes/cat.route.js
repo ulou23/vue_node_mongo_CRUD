@@ -1,19 +1,23 @@
 const exp=require('express');
-const studentroute=exp.Router();
+const Catroute=exp.Router();
 
 let CategoryModel=require('../models/Category')
 
-studentroute.route('/').get((req,res)=> {
-    CategoryModel.find((error,data)=>{
+Catroute.route('/').get((req,res)=> {
+    res.json({
+        status: 'API',
+        message: 'welcome'
+    })
+   /* CategoryModel.find((error,data)=>{
         if(error){
             return console.log(error)
         } else{
             res.json(data)
         }
-    })
+    }) */
 })
 
-studentroute.route('/create_cat').post((req,res,next)=>{
+Catroute.route('/create_cat').post((req,res,next)=>{
     CategoryModel.create(req.body,(error,data)=> {
         if(error){
             return console.log(error)
@@ -23,4 +27,4 @@ studentroute.route('/create_cat').post((req,res,next)=>{
     })
 })
 
-module.exports=studentroute
+module.exports=Catroute

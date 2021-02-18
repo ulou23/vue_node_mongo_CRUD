@@ -17,6 +17,7 @@ Catroute.route('/').get((req,res)=> {
     }) */
 })
 
+/*
 Catroute.route('/create_cat').post((req,res,next)=>{
     CategoryModel.create(req.body,(error,data)=> {
         if(error){
@@ -26,5 +27,11 @@ Catroute.route('/create_cat').post((req,res,next)=>{
         }
     })
 })
+*/
+
+var catcontroller=require("../controller/catcontroller")
+
+Catroute.route('/cat')
+.get()
 
 module.exports=Catroute

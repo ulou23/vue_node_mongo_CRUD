@@ -15,6 +15,9 @@ const Category=
     })
 
 
-module.exports=Category;
 
-module.exports=mongoose.model('CatModel', Category)
+
+var Cat=module.exports=mongoose.model('CatModel', CategorySchema);
+module.exports.get=function(callback,limit){
+    Cat.find(callback).limit(limit)
+}

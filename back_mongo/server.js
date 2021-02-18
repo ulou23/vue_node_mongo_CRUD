@@ -22,9 +22,10 @@ var cors_org={
 };
 
 app.use(cors());
-app.use(bodyparser.json());
 
-app.use(bodyparser.urlencoded({extended:false}));  //false or true
+app.use(bodyparser.urlencoded({extended:true));  //false or true
+    app.use(bodyparser.json());
+
 
 app.use('/api',catAPI)
 

@@ -29,7 +29,7 @@ Catroute.route('/create_cat').post((req,res,next)=>{
 })
 */
 
-var catcontroller=require("../controller/catcontroller")
+var catcontroller=require("../controller/cat.controller")
 
 Catroute.route('/cat')
 .get()

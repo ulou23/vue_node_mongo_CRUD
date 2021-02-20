@@ -32,6 +32,29 @@ Catroute.route('/create_cat').post((req,res,next)=>{
 var catcontroller=require("../controller/cat.controller")
 
 Catroute.route('/cat')
-.get()
+.get(catcontroller.index)
+.post(catcontroller.add)
+
+Catroute.route('/cat/:cat_id')
+.get(catcontroller.view)
+.patch(catcontroller.update)
+.put(catcontroller.update)
+.delete(catcontroller.delete)
+
+
+//produkt 
+
+var procontroller=require("../controller/pro.controller");
+Catroute.route('/pro')
+.get(procontroller.index)
+.post(procontroller.add)
+
+Catroute.route('/pro/:pro_id')
+.get(procontroller.view)
+.patch(procontroller.update)
+.put(procontroller.update)
+.delete(procontroller.delete)
+
+
 
 module.exports=Catroute

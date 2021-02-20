@@ -17,3 +17,6 @@ const Producent=mongoose.model(
 );
 
 module.exports=Producent
+module.exports.get=function(callback,limit){
+    Producent.find(callback).limit(limit)
+}

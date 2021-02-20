@@ -2,7 +2,7 @@ const mongoose=require("mongoose");
 
 const { Schema} =mongoose;
 
-const Category=
+const CategorySchema=
     new Schema({
         name: String,
         slug:String,

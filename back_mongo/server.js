@@ -9,11 +9,7 @@ url="mongodb://localhost:27017/lampybaza";
 
 
 
-const conn=mongoose.createConnection(url,{ useNewUrlParser:true, useUnifiedTopology:true}).then(()=> {
-    console.log("DB connected")
-}, error=>{
-    console.log("DB couldnt be connected"+ error)
-})
+
 
 const catAPI=require('../back_mongo/routes/cat.route')
 
@@ -23,8 +19,9 @@ var cors_org={
 
 app.use(cors());
 
-app.use(bodyparser.urlencoded({extended:true));  //false or true
-    app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({
+    extended:true }));  //false or true
+app.use(bodyparser.json());
 
 
 app.use('/api',catAPI)
@@ -39,6 +36,12 @@ app.get("/",(req,res)=> {
 });
 
 */
+
+const conn=mongoose.connect(url,{ useNewUrlParser:true, useUnifiedTopology:true}).then(()=> {
+    console.log("DB connected")
+}, error=>{
+    console.log("DB couldnt be connected"+ error)
+})
 
 const PORT=process.env.PORT || 8080;
 app.listen(PORT, () => {

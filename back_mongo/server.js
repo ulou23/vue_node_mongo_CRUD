@@ -5,7 +5,7 @@ const mongoose=require('mongoose');
 
 const app=express();
 
-url="mongodb://localhost:27017/lampybaza";
+url="mongodb://localhost:27017/baza";
 
 
 

@@ -42,9 +42,12 @@ Catroute.route('/cat/:cat_id')
 .delete(catcontroller.delete)
 
 
+
+
 //produkt 
 
 var procontroller=require("../controller/pro.controller");
+const Category = require('../models/Category');
 Catroute.route('/pro')
 .get(procontroller.index)
 .post(procontroller.add)

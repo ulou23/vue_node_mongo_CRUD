@@ -1,14 +1,16 @@
 const mongoose=require("mongoose");
+const { Schema} =mongoose;
 
-const Producent=mongoose.model(
+const ProducentSchema=new Schema(
     "Producent",
     new mongoose.Schema({
         title: String,
         description: String,
         category: [
             {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Category"
+                type: Schema.Types.ObjectId,
+                ref: "Category",
+                required:true
             }
         ],
        phone : Number,
@@ -16,7 +18,7 @@ const Producent=mongoose.model(
     })
 );
 
-module.exports=Producent
+module.exports=mongoose.model("Producent", ProducentSchema)
 module.exports.get=function(callback,limit){
     Producent.find(callback).limit(limit)
 }

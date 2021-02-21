@@ -1,4 +1,4 @@
-url="mongodb://localhost:27017/lampybaza";
+url="mongodb://localhost:27017/baza";
 
 
 const mongoose=require("mongoose");

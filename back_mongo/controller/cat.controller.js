@@ -15,11 +15,14 @@ exports.index=function(req,res){
     });
 };
 
+
+
+
 exports.add=function(req,res){
     var cat=new Cat();
     cat.name=req.body.name? req.body.name:cat.name;
     cat.slug=req.body.slug;
-    cat.lampBrands=req.body.lampBrands;
+    
 
     cat.save(function(err){
         if (err)
@@ -49,7 +52,7 @@ exports.update=function(req,res){
         res.send(err);
         cat.name=req.body.name? req.body.name:cat.name;
         cat.slug=req.body.slug;
-        cat.lampBrands=req.body.lampBrands;
+        
 
         cat.save(function(err){
             if(err) 

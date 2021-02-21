@@ -6,15 +6,8 @@ const CategorySchema=
     new Schema({
         name: String,
         slug:String,
-        lampBrands: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Producent"
-            }
-        ]
+        
     })
-
-
 
 
 var Cat=module.exports=mongoose.model('CatModel', CategorySchema);

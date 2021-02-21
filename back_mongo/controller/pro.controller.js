@@ -1,19 +1,18 @@
 Produ=require('../models/Producent')
 
-exports.index=function(req,res){
-    Produ.get(function(err,pro){
-        if(err)
-        res.json({
-            status: "error",
-            message:err
-        });
-        res.json({
+exports.index=async function(req,res){
+    await Produ.find({}).populate('category').exec().then((pro)=> {
+
+    res.json({
             status:"success",
             message:"Suuuuper",
             data:pro
-        });
-    });
-};
+        }), (err)=>{
+            res.send(err);
+        
+    };
+});
+}
 
 exports.add=function(req,res){
     var pro=new Produ();

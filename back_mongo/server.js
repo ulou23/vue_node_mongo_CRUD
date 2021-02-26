@@ -5,7 +5,7 @@ const mongoose=require('mongoose');
 
 const app=express();
 
-url="mongodb://localhost:27017/baza";
+url="mongodb://localhost:27017/tar";
 
 
 
@@ -24,7 +24,19 @@ app.use(bodyparser.urlencoded({
 app.use(bodyparser.json());
 
 
-app.use('/api',catAPI)
+
+const Prod=require('./models/Producent')
+
+app.post('/addpro',async (req,res)=> {
+    try{
+        const prod=new Prod(req.body);
+        await prod.save();
+        res.status(201).json({success:true,data:prod});
+    } catch(err){
+        res.status(400).json({success:false,message:err.message
+        })
+    }
+})
 
 /*
 const db=require("./models");

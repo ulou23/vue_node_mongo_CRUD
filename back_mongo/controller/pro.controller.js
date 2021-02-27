@@ -15,21 +15,18 @@ exports.index=async function(req,res){
 }
 
 exports.add=function(req,res){
-    var pro=new Produ();
-    pro.title=req.body.title? req.body.title:pro.title;
-    pro.description=req.body.description;
-    pro.category=req.body.category;
-    pro.phone=req.body.phone;
-    pro.contact_person=req.body.contact_person;
-
-    pro.save(function(err){
-        if (err)
-        res.json(err);
-        res.json({
-            message:"New ok",
-            data:pro
-        }).populate('category', 'name');
+    Produ.create({
+        title:req.body.title,
+        phone:req.body.phone,
+    }, (err,data)=>{
+        if (err){
+            res.status(400).json(err)
+        }else{
+            res.status(201).json(data)
+        }
     });
+  
+    
 
 };
 
@@ -50,9 +47,9 @@ exports.update=function(req,res){
         res.send(err);
         pro.title=req.body.title? req.body.title:pro.title;
         pro.description=req.body.description;
-        pro.category=req.body.category;
+        
         pro.phone=req.body.phone;
-        pro.contact_person=req.body.contact_person;
+ 
 
         pro.save(function(err){
             if(err) 

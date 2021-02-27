@@ -18,22 +18,38 @@ exports.index=function(req,res){
 
 
 
-exports.add=function(req,res){
-    var cat=new Cat();
-    cat.name=req.body.name? req.body.name:cat.name;
-    cat.slug=req.body.slug;
-    
-
-    cat.save(function(err){
-        if (err)
-        res.json(err);
-        res.json({
-            message:"New ok",
-            data:cat
+exports.add=(req,res)=>{
+    const proid=req.params.proid;
+    const doAddCat=(req,res,data)=>{
+        if(!data){
+            res.status(400).json({"message":"not found"});
+        }else{
+            const {name,slug} =req.body;
+            data.category.push({
+                name,
+                slug
+            });
+            data.save((err,data)=> {
+                if(err) {
+                    res.status(400).json(err);
+                }else{
+                    res.status(201).json(data)
+                }
+            })
+        }
+    }
+    if(proid){
+        Produ.findById(proid).select('category').exec((err,data)=>{
+            if(err){
+                res.status(400).json(data)
+            }else{
+                doAddCat(req,res,data);
+            }
         });
-    });
-
-};
+    } else{
+        res.status(400).json({"message": "produ lost"})
+    }
+}
 
 exports.view=function(req,res){
     Cat.findById(req.params.cat_id,function(err,cat){

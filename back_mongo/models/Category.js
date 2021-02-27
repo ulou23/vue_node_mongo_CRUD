@@ -9,8 +9,13 @@ const CategorySchema=
         
     })
 
+    var Cat=mongoose.model('CatModel', CategorySchema, "category");
 
-var Cat=module.exports=mongoose.model('CatModel', CategorySchema);
+module.exports={
+    CategorySchema,
+    Cat,
+}
+
 module.exports.get=function(callback,limit){
     Cat.find(callback).limit(limit)
 }
